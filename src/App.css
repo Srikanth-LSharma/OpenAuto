@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.font-face-gm {
+  font-family: "montserrat-regular";
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -14,7 +18,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #121821;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
