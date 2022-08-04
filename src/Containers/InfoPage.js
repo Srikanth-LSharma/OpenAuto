@@ -82,27 +82,21 @@ const styles={
 };
 
 const LandingPage = (props) => {
-    const [form,setForm]=useState({
-        name:'',
-        email:''
-    });
 
+    const [offsetY,setoffsetY]=useState(0);
+    const handleScroll=()=>setoffsetY(window.pageYOffset);
+    useEffect(()=>{
+        window.addEventListener("scroll",handleScroll);
 
-    const handleInputChange = event => {
-        const name=event.target.name;
-        setForm({ ...form, [name]: event.target.value });
-    };
-
-    const handleSubmit=()=>{
-        props.snackbarShowMessage('Details saved successfully','success')
-    }
-
+        return ()=>window.removeEventListener("scroll",handleScroll);
+    },[]);
+    
 return (
     <React.Fragment>
         <div style={styles.bgImage}>
             <Grid container>
                 <Grid item xs={6} style={styles.gridItemRight}>
-                    <img src={Illustation} style={styles.illustration}></img>
+                    <img src={Illustation} style={{...styles.illustration,transform:`translateX(${offsetY*0.05}px)`,transition: 'transform 100ms ease-in-out'}}></img>
                 </Grid>
                 <Grid item xs={6} style={styles.gridItemLeft}>
                     <Typography style={styles.fontPageTitle}>

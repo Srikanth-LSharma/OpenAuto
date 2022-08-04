@@ -80,6 +80,14 @@ const LandingPage = (props) => {
     });
     const[emailError,setEmailError]=useState(false);
 
+    const [offsetY,setoffsetY]=useState(0);
+    const handleScroll=()=>setoffsetY(window.pageYOffset);
+    useEffect(()=>{
+        window.addEventListener("scroll",handleScroll);
+
+        return ()=>window.removeEventListener("scroll",handleScroll);
+    },[]);
+
     const handleInputChange = event => {
         const name=event.target.name;
         setForm({ ...form, [name]: event.target.value });
@@ -169,7 +177,7 @@ return (
                     </form>
                 </Grid>
                 <Grid item xs={7} style={styles.gridItemRight}>
-                    <img src={Illustation} style={styles.illustration}></img>
+                    <img src={Illustation} style={{...styles.illustration,transform:`translateY(-${offsetY*0.15}px)`,transition: 'transform 75ms ease-in'}}></img>
                 </Grid>
             </Grid>
             <Footer page="Landing"/>
